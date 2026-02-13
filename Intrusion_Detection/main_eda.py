@@ -8,7 +8,10 @@ from src.data_integrity import (
 from src.eda import (
     analyze_target_distribution,
     analyze_feature_types,
+    summarize_numeric,
+    categorical_counts,
     plot_numeric_distributions,
+    plot_boxplots,
     correlation_analysis,
 )
 from src.config import TARGET_COLUMN
@@ -31,10 +34,15 @@ def main():
     # Step 4: Feature Type Analysis
     categorical_cols, numeric_cols = analyze_feature_types(df)
 
-    # Step 5: Numeric Distributions
-    plot_numeric_distributions(df, numeric_cols)
+    # Step 5: Numeric and Categorical Summaries
+    summarize_numeric(df, numeric_cols)
+    categorical_counts(df, categorical_cols)
 
-    # Step 6: Correlation
+    # Step 6: Numeric Distributions and simple boxplots
+    plot_numeric_distributions(df, numeric_cols)
+    plot_boxplots(df, numeric_cols)
+
+    # Step 7: Correlation
     correlation_analysis(df)
 
 
