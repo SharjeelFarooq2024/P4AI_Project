@@ -1,3 +1,33 @@
+# Dataset Selection and Justification
+
+**Selected Dataset:** UNSW-NB15
+
+**Reason for Selection:**
+- Realistic modern network traffic generated with IXIA PerfectStorm, combining normal activity and contemporary attack types.
+- Balanced attack types across 9 major categories (e.g., DoS, Exploits, Fuzzers, Reconnaissance) for multi-class and binary tasks.
+- Rich 49-feature set spanning network-level, flow-level, and content-level attributes to enable diverse feature engineering.
+- Large-scale (~2.5M samples) for training robust ML/DL models without severe overfitting.
+- Community recognition as a widely cited benchmark for intrusion detection.
+
+**Comparison with Other Common Datasets**
+
+| Feature / Dataset      | UNSW-NB15                                 | CIC-IDS2017                                        | NSL-KDD                              |
+|------------------------|-------------------------------------------|----------------------------------------------------|--------------------------------------|
+| Year of Generation     | 2015                                      | 2017                                               | 1999                                 |
+| Traffic Type           | Modern synthetic + realistic              | Modern simulated + realistic                       | Old simulated TCP/IP traffic         |
+| Attack Types           | 9 categories (DoS, Exploit, etc.)         | 14 categories (DoS, DDoS, Brute Force, Botnet, etc.) | 4 main categories (DoS, Probe, U2R, R2L) |
+| Number of Features     | 49 (network + flow + content)             | 80+ features (timestamps, protocols, flow stats)   | 41 (mostly network-level, no content-level) |
+| Sample Size            | ~2.5 million                              | ~2.8 million                                       | 41K+ train, 12K test                 |
+| Strengths              | Realistic modern attacks; well-structured | Very recent attacks; high fidelity; benign + attack flows | Widely used benchmark; lightweight   |
+| Limitations            | Synthetic generation may miss real-world noise | Complex feature set; preprocessing intensive       | Outdated traffic; mostly old attacks |
+
+**Justification Over Others:**
+- Modern relevance: captures current attack patterns and protocols (unlike NSL-KDD).
+- Manageable complexity: smaller yet sufficient feature set versus CIC-IDS2017, easing EDA and preprocessing.
+- Suitable for binary and multi-class classification: labeled normal traffic plus diverse attack categories.
+
+**Conclusion:** UNSW-NB15 balances realism, feature richness, and usability, making it a strong choice for an end-to-end ML intrusion detection project.
+
 # Intrusion Detection EDA
 
 ## Dataset & Key Fields
