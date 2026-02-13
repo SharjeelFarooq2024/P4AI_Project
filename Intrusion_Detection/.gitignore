@@ -1,0 +1,3 @@
+# Ignore all CSV files anywhere in the repo
+*.csv
+**/*.csv
