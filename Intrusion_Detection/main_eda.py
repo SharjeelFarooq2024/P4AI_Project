@@ -43,7 +43,7 @@ def main():
     plot_boxplots(df, numeric_cols)
 
     # Step 7: Correlation
-    correlation_analysis(df)
+    correlation_analysis(df, numeric_cols)
 
 
 if __name__ == "__main__":

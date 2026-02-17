@@ -1,5 +1,6 @@
 import os
 import matplotlib
+import pandas as pd
 
 # Use a non-interactive backend so scripts do not block waiting for GUI windows
 matplotlib.use("Agg")
@@ -121,17 +122,24 @@ def plot_boxplots(df, numeric_columns):
         print(f"Saved boxplot for {col} to {plot_path}")
 
 
-def correlation_analysis(df):
+def correlation_analysis(df, numeric_columns=None):
     print("\n===== CORRELATION ANALYSIS =====")
-    numeric_df = df.select_dtypes(exclude=["object"])
+    # Prefer provided numeric columns; otherwise derive without select_dtypes to avoid large copies
+    if numeric_columns is None:
+        dtypes = df.dtypes
+        numeric_columns = [col for col, dtype in dtypes.items() if pd.api.types.is_numeric_dtype(dtype)]
 
-    if numeric_df.empty:
+    if not numeric_columns:
         print("No numeric columns available for correlation analysis.")
         return None
 
+    numeric_df = df[numeric_columns].apply(pd.to_numeric, errors="coerce").astype("float32")
+
     # Sample to keep the correlation matrix computation reasonable on large datasets
     sample_size = min(len(numeric_df), CORR_SAMPLE_SIZE)
-    numeric_df = numeric_df.sample(sample_size, random_state=RANDOM_SEED)
+    if sample_size < len(numeric_df):
+        print(f"Sampling {sample_size} rows for correlation (from {len(numeric_df)}).")
+        numeric_df = numeric_df.sample(sample_size, random_state=RANDOM_SEED)
 
     corr_matrix = numeric_df.corr()
 
