@@ -1,0 +1,10 @@
+# Virtual Environment
+.ai_venv/
+
+# Data Folder and CSV files
+# Use 'data/' if the folder is named 'data'
+# Use '.data/' if the folder is actually hidden and named '.data'
+data/*.csv
+data/UNSW-NB15_*.csv
+data/UNSW_training-set.csv
+data/UNSW_testing-set.csv
