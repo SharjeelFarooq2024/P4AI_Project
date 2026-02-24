@@ -1,3 +1,37 @@
-# Ignore all CSV files anywhere in the repo
+# Virtual environments
+.ai_venv/
+.venv/
+env/
+
+# Python cache and checkpoints
+__pycache__/
+**/__pycache__/
+.ipynb_checkpoints/
+
+# Large/generated artifacts
+saved_models/
+models/saved/
+data/raw/
+processed_data_full/
+processed_data_mc/
+analysis_output/
+figures/
+
+# Model binaries and pickles
+*.joblib
+*.pkl
+*.pickle
+
+# Data exports
 *.csv
-**/*.csv
+*.tsv
+*.parquet
+*.feather
+*.log
+*.gz
+*.zip
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
